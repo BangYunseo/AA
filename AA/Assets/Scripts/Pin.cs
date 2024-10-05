@@ -8,6 +8,8 @@ public class Pin : MonoBehaviour
     private float moveSpeed = 10f;
 
     private bool isPinned = false;
+    private bool isLaunched = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,17 +17,29 @@ public class Pin : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(isPinned == false){
+        if(isPinned == false && isLaunched == true){
             transform.position += Vector3.up * moveSpeed * Time.deltaTime;
         }
     }
     private void OnTriggerEnter2D(Collider2D other){
         isPinned = true;
         if(other.gameObject.tag == "Target"){
+            GameObject childObject = transform.Find("Square").gameObject;
+            // GameObject childObject = transform.GetChild(0).gameObject;
+
+            SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
+            childSprite.enabled = true;
+
             transform.SetParent(other.gameObject.transform);
+
+            GameManager.instance.DecreaseGoal();
         }
     }
     // Pin이 Target에 충돌했을 경우 원에 붙어있는 채로 유지
+
+    public void Launch() {
+        isLaunched = true;
+    }
 }
