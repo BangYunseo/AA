@@ -17,6 +17,8 @@ public class TargetCircle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
+        if (GameManager.instance.isGameOver == false) {
+            transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
+        }
     }
 }
