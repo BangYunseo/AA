@@ -35,7 +35,8 @@ public class Pin : MonoBehaviour
             transform.SetParent(other.gameObject.transform);
 
             GameManager.instance.DecreaseGoal();
-        } else if (other.gameObject.tag == "Pin") {
+        } 
+        else if (other.gameObject.tag == "Pin") {
             GameManager.instance.SetGameOver(false);
         }
     }

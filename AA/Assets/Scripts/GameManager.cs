@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     public void DecreaseGoal() {
         goal -= 1;
         textGoal.SetText(goal.ToString());
+        
+        UIManager.instance.ScoreAdd(10);
 
         if(goal <= 0) {
             SetGameOver(true);
@@ -69,10 +71,5 @@ public class GameManager : MonoBehaviour
 
     public void Retry() {
         SceneManager.LoadScene("SampleScene");
-    }
-
-    public void GameOver(){
-        gameOverImage.gameObject.SetActive(true);
-
     }
 }
