@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
@@ -21,6 +23,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Color red;
 
+    public Text highScoreText;
+    public int highScore;
+    public Image gameOverImage;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -31,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         textGoal.SetText(goal.ToString());
+        // highScoreText = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     // Update is called once per frame
@@ -56,11 +63,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void ShowRetryButton() {
+    public void ShowRetryButton() {
         btnRetry.SetActive(true);
     }
 
     public void Retry() {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void GameOver(){
+        gameOverImage.gameObject.SetActive(true);
+
     }
 }
