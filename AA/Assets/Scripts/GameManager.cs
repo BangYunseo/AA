@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(btnRetry == null){
+            btnRetry = GameObject.Find("btnRetry");
+        }
         textGoal.SetText(goal.ToString());
         // highScoreText = PlayerPrefs.GetInt("HighScore", 0);
     }
@@ -66,7 +69,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void ShowRetryButton() {
-        btnRetry.SetActive(true);
+        if (btnRetry != null) {
+            btnRetry.SetActive(true);
+        }
     }
 
     public void Retry() {

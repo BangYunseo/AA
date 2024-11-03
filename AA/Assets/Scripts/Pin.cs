@@ -40,7 +40,6 @@ public class Pin : MonoBehaviour
             GameManager.instance.SetGameOver(false);
         }
     }
-    // Pin이 Target에 충돌했을 경우 원에 붙어있는 채로 유지
 
     public void Launch() {
         isLaunched = true;

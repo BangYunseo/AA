@@ -28,10 +28,36 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
+        string currentScene = SceneManager.GetActiveScene().name;
+        Debug.Log("현재 씬 : " + currentScene);
+        if (currentScene == "SampleScene")
+        {
+            scoreText = GameObject.Find("scoreText")?.GetComponent<TextMeshProUGUI>();
+            if(scoreText == null)
+            {
+                Debug.LogError("Can't find!");
+            }
+            else 
+            {
+                scoreText.gameObject.SetActive(true);
+            }
+            scoreText.gameObject.SetActive(true);
+        }
+        else
+        {
+            scoreText = null;
+        }
+
         score = 0;
-        scoreText.text = score.ToString();
         highscore = PlayerPrefs.GetInt("HighScore", 0);
-    }
+
+        if (scoreText != null)
+        {
+            scoreText.text = score.ToString();
+        }
+}
+
+
 
     // Update is called once per frame
     void Update()
@@ -39,6 +65,11 @@ public class UIManager : MonoBehaviour
         
     }
     public void ScoreAdd(int _score) {
+        if(scoreText == null)
+        {
+            return;
+        }
+
         score += _score;
         scoreText.text = score.ToString();
     }
