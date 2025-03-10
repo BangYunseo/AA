@@ -29,18 +29,9 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         string currentScene = SceneManager.GetActiveScene().name;
-        Debug.Log("현재 씬 : " + currentScene);
         if (currentScene == "SampleScene")
         {
             scoreText = GameObject.Find("scoreText")?.GetComponent<TextMeshProUGUI>();
-            if(scoreText == null)
-            {
-                Debug.LogError("Can't find!");
-            }
-            else 
-            {
-                scoreText.gameObject.SetActive(true);
-            }
             scoreText.gameObject.SetActive(true);
         }
         else
