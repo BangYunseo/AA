@@ -7,7 +7,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance;
+    public static UIManager instance = null;
+    [SerializeField]
     public TextMeshProUGUI scoreText;
     public int score;
     public TextMeshProUGUI highScoreText;

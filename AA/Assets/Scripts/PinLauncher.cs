@@ -14,21 +14,30 @@ public class PinLauncher : MonoBehaviour
         PreparePin();
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) 
-            && currPin != null
-            && !GameManager.instance.isGameOver) {
+        if (GameManager.instance == null)
+        {
+            Debug.LogError("GameManager.instance가 null입니다! ");
+            return;
+        }
+
+        if (Input.GetMouseButtonDown(0) && currPin != null && !GameManager.instance.isGameOver)
+        {
             currPin.Launch();
             currPin = null;
             Invoke("PreparePin", 0.2f);
-        } else if(GameManager.instance.isGameOver) {
-            if (currPin != null) {
+        }
+        else if (GameManager.instance.isGameOver)
+        {
+            if (currPin != null)
+            {
                 Destroy(currPin.gameObject);
                 currPin = null;
             }
-            
+
         }
         // goal이 0일 때 currPin이 존재한다면 오브젝트 파괴
     }
